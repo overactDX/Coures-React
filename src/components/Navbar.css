@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap');
+.Navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    font-family: 'Kanit', sans-serif;
+
+}

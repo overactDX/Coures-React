@@ -1,0 +1,10 @@
+p {
+    font-size: 28px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.item-img {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
