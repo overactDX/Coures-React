@@ -2,12 +2,12 @@ import React from "react";
 import "./Card.css"
 
 const Card = (props) => { 
-  const { DataCards } = props;
+  const { tattoo, onCardClick } = props;
 
   return (
     <div className="item-img">
-      <img src={DataCards.CardImg} alt="" />
-      <p>{DataCards.title}</p>
+      <img src={tattoo.CardImg} alt="" onClick={() =>{onCardClick(tattoo)}}/>
+      <p>{tattoo.title}</p>
     </div>
   );
 };

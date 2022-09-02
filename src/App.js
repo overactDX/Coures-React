@@ -1,28 +1,51 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Search from "./components/Search";
 import Card from "./components/Card";
 import CardPost from "./components/CardPost";
-import DataCard from "./data/DataCard";
 import { useState } from "react";
+import tattoos from "./data/tattoos";
 
 function App() {
-  // const [selectedImg, setSelectedImg] = useState(DataCard[0]);
+  const [selectedCard, setSelectedCard] = useState(null);
 
-  const DataCardElements = DataCard.map((DataCards, index) => {
-    return <Card key={index} DataCards={DataCards} />;
-  });
+  const [searchText, setSearchText] = useState("");
 
-  // let CardPost = null;
-  // if (!!selectedImg) {
-  //   CardPost = <CardPost />;
-  // }
+  function onCardOpenClick(theTattoo) {
+    setSelectedCard(theTattoo);
+  }
+
+  function onTattooCloseClick() {
+    setSelectedCard(null);
+  }
+
+  const tattooElements = tattoos
+    .filter((tattoo) => {
+      return tattoo.title.includes(searchText);
+    })
+    .map((tattoo, index) => {
+      return (
+        <Card key={index} tattoo={tattoo} onCardClick={onCardOpenClick} />
+      );
+    });
+
+  let cardPost = null;
+  if (!!selectedCard) {
+    cardPost = (
+      <CardPost tattoo={selectedCard} onBgClick={onTattooCloseClick} />
+    );
+  }
 
   return (
     <div className="app">
       <Navbar />
-      <div className="app-grid">{DataCardElements}</div>
-      {/* {CardPost} */}
-
+      <section className="app-section">
+        <div className="app-contrainer">
+          <Search value={searchText} onValueChang={setSearchText} />
+          <div className="app-grid">{tattooElements}</div>
+        </div>
+      </section>
+      {cardPost}
     </div>
   );
 }
